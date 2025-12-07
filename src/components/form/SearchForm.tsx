@@ -22,23 +22,28 @@ const SearchForm = ({ userName, setUserName }: SearchFormProps) => {
     setUserName(text);
   };
   return (
-    <form
-      onSubmit={handleSearch}
-      className="flex items-center gap-x-2 w-full lg:w-1/3 mb-8"
-    >
-      <Label htmlFor="search" className="sr-only">
-        Search
-      </Label>
-      <Input
-        type="text"
-        id="search"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Search Github Users..."
-        className="grow bg-background"
-      />
-      <Button type="submit">Search</Button>
-    </form>
+    <div>
+      <form
+        onSubmit={handleSearch}
+        className="flex items-center gap-x-2 w-full lg:w-1/3 mb-1"
+      >
+        <Label htmlFor="search" className="sr-only">
+          Search
+        </Label>
+        <Input
+          type="text"
+          id="search"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Search Github Users..."
+          className="grow bg-background "
+        />
+        <Button type="submit">Search</Button>
+      </form>
+      <p className="text-gray-500 text-sm mb-8">
+        Hint : you can try gaearon, torvalds, yyx990803, etc.
+      </p>
+    </div>
   );
 };
 

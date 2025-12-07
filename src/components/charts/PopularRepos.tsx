@@ -1,5 +1,5 @@
-import type { Repository } from '@/types';
-import { calculateMostForkedRepos } from '@/utils';
+import { type Repository } from '@/types';
+import { calculateMostStarredRepos } from '@/utils';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import {
   type ChartConfig,
@@ -8,35 +8,34 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 
-const ForkedRepos = ({ repositories }: { repositories: Repository[] }) => {
-  const mostForkedRepos = calculateMostForkedRepos(repositories);
+const PopularRepos = ({ repositories }: { repositories: Repository[] }) => {
+  const popularRepos = calculateMostStarredRepos(repositories);
   const chartConfig = {
     repo: {
       label: 'Repository',
-      color: '#facd12',
+      color: '#e11c47',
     },
   } satisfies ChartConfig;
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-center mb-4">Forked Repos</h2>
+      <h2 className="text-2xl font-semibold text-center mb-4">Popular Repos</h2>
       <ChartContainer config={chartConfig} className="h-100 w-full">
-        <BarChart accessibilityLayer data={mostForkedRepos}>
+        <BarChart accessibilityLayer data={popularRepos}>
           <CartesianGrid vertical={false} />
           <XAxis
             dataKey="repo"
-            tickLine={true}
+            tickLine={false}
             tickMargin={10}
-            axisLine={false}
             tickFormatter={(value) => value.slice(0, 10)}
           />
-          <YAxis dataKey="count" />
+          <YAxis dataKey="stars" />
           <ChartTooltip content={<ChartTooltipContent />} />
-          <Bar dataKey="count" fill="var(--color-repo)" radius={4} />
+          <Bar dataKey="stars" fill="var(--color-repo)" radius={4} />
         </BarChart>
       </ChartContainer>
     </div>
   );
 };
 
-export default ForkedRepos;
+export default PopularRepos;
