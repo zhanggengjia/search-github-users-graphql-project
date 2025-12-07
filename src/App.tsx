@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SearchForm from './components/form/SearchForm';
 import UserProfile from './components/user/UserProfile';
 
