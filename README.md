@@ -17,6 +17,8 @@ This project is a modern GitHub user-search interface built with React, TypeScri
 ⚡ Vite + TypeScript for fast development and type-safe code
 
 📁 Project Structure
+
+```
 src/
 ├── components/ # UI components, charts, cards
 ├── hooks/ # Custom hooks for data fetching
@@ -24,6 +26,7 @@ src/
 ├── pages/ # Main views & routing logic
 ├── styles/ # Global styles, Tailwind config (if any)
 └── types/ # Shared TypeScript types
+```
 
 🛠️ Tech Stack
 
@@ -39,21 +42,23 @@ Tailwind / Shadcn (if included in your version)
 
 🚀 Getting Started
 
-1. Install dependencies
+```bash
+#1. Install dependencies
    npm install
 
-2. Add your GitHub token
+#2. Add your GitHub token
 
 Create a .env file:
 
 VITE_GITHUB_TOKEN=your_access_token_here
 
-3. Start development server
+#3. Start development server
    npm run dev
 
-🔧 Build for Production
+#🔧 Build for Production
 npm run build
 npm run preview
+```
 
 📜 License
 
