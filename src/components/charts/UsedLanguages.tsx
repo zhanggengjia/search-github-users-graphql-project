@@ -1,14 +1,14 @@
 import { type Repository } from '@/types';
 import { calculatePopularLanguages } from '@/utils';
-import { Line, LineChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import {
-  type ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart';
+import { type ChartConfig } from '@/components/ui/chart';
+import GenericChart, { type ChartMode } from './GenericChart';
 
-const UsedLanguages = ({ repositories }: { repositories: Repository[] }) => {
+type UsedLanguagesProps = {
+  repositories: Repository[];
+  mode: ChartMode;
+};
+
+const UsedLanguages = ({ repositories, mode }: UsedLanguagesProps) => {
   const popularLanguages = calculatePopularLanguages(repositories);
 
   const chartConfig = {
@@ -19,27 +19,15 @@ const UsedLanguages = ({ repositories }: { repositories: Repository[] }) => {
   } satisfies ChartConfig;
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold text-center mb-4">
-        Used Languages
-      </h2>
-      <ChartContainer config={chartConfig} className="h-100 w-full">
-        <LineChart accessibilityLayer data={popularLanguages}>
-          <CartesianGrid vertical={false} />
-          <XAxis dataKey="language" tickLine={false} tickMargin={10} />
-          <YAxis />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <Line
-            type="monotone"
-            dataKey="count"
-            stroke="var(--color-language)"
-            strokeWidth={2}
-            dot={{ r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-        </LineChart>
-      </ChartContainer>
-    </div>
+    <GenericChart
+      title="Used Languages"
+      mode={mode}
+      data={popularLanguages}
+      xKey="language"
+      yKey="count"
+      config={chartConfig}
+      colorCssVar="var(--color-language)"
+    />
   );
 };
 
